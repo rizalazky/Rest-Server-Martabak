@@ -1,6 +1,7 @@
 const express=require('express')
 const app=express.Router()
 const konek=require('../models/M_Barang')
+const respon=require('../response')
 
 
 app.get('/',(req,res)=>{
@@ -8,7 +9,7 @@ app.get('/',(req,res)=>{
         if(err){
             throw err
         }else{
-            res.json(result)
+            respon.ok(result,'OK',res)
         }
     })
 })
@@ -21,7 +22,7 @@ app.post('/',(req,res)=>{
             throw err
         }else{
             console.log('Berhasil')
-            res.json('berhsil indsert')
+            respon.ok(result,'Berhasil Insert',res)
         }
     })
 })
@@ -33,7 +34,7 @@ app.delete('/:id_kategori',(req,res)=>{
         if(err){
             throw err
         }else{
-            res.json("Berhasil Delete")
+            respon.ok(result,'Berhasil Delete',res)
         }
     })
 })
@@ -51,11 +52,7 @@ app.put('/',(req,res)=>{
         if(err){
             throw err
         }else{
-            res.json({
-                status:200,
-                message:"Berhasil Update",
-                response:results
-            })
+            respon.ok(result,'Berhasil Update',res)
 
             // res.end()
         }
